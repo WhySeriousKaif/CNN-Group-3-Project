@@ -1,0 +1,13 @@
+# Local datasets
+Project 21 - AI Story Continuation/data/
+Project 23 - Batch Norm vs No Batch Norm/data/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# macOS system files
+.DS_Store
