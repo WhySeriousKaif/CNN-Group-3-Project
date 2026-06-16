@@ -1,6 +1,6 @@
-# Spoken Transcript: Project Demonstration Guide
+# Spoken Transcript: Project Demonstration Guide (Easy Language)
 
-This script walks you through exactly what to say, what to click on, and what to point at on your screen when demonstrating the projects to your professor ("Sir").
+This script walks you through exactly what to do and say in front of your professor ("Sir"). It is written in simple, plain English to avoid sounding too "bookish" or formal.
 
 ---
 
@@ -9,87 +9,103 @@ This script walks you through exactly what to say, what to click on, and what to
 **What to do**: Open the Jupyter main page showing both folders, then click to open `Project 21 - AI Story Continuation/task1_story_continuation.ipynb`.
 
 **What to say**:
-> "Good morning, Sir. For our project evaluation, our group has completed two tasks exploring **Sequence Modeling with LSTMs** and **Optimization Dynamics with Batch Normalization**. 
+> "Good morning, Sir. For our project evaluation, our group worked on two main tasks. 
 > 
-> We have structured both tasks separately in their own folders. I will start by demonstrating **Task 1: AI Story Continuation**."
+> First, we built an AI that learns to write stories character-by-character. Second, we analyzed how a technique called Batch Normalization helps deep neural networks train stably. 
+> 
+> We have organized both projects into separate folders. I will start by showing you our first notebook: **Task 1: AI Story Continuation**."
 
 ---
 
 ## Part 2: Project 21 (LSTM Story Continuation) (Approx. 3 Minutes)
 
-**What to do**: Scroll down to Section 1 & 2 in the notebook, pointing out the dataset downloading and dataset class.
+**What to do**: Scroll down to Section 1 & 2 in the notebook (pointing out the Shakespeare and Sherlock datasets).
 
 **What to say**:
-> "In this project, we trained a character-level LSTM. Unlike traditional models that use hand-crafted features or pre-trained words, our model starts with zero knowledge of English grammar. It learns representations directly from character indices.
+> "In this task, we wanted our AI to learn to write text. Instead of giving the AI a pre-made list of English words, it starts with zero knowledge and has to learn spelling, spacing, punctuation, and sentence styles entirely on its own from raw letters.
 > 
-> We chose two contrasting text styles: William Shakespeare's plays, which are poetic and dramatic, and Arthur Conan Doyle's Sherlock Holmes, which is narrative detective prose. We preprocessed both texts by lowercase mapping and slicing them to train quickly while preserving stylistic features."
-
-**What to do**: Scroll to Section 3 & 4 showing the `CharLSTM` model code.
-
-**What to say**:
-> "Here is our model architecture. We project character indices into a 128-dimensional embedding space, which is then fed into a stacked 2-layer LSTM with 256 hidden units. We applied a Dropout of 0.2 between layers. 
+> Looking at the code here, we import standard PyTorch libraries like `torch.nn` for neural network layers and `torch.optim` for optimization. We wrote a custom Dataset class that reads the text files, maps each letter to a unique number, and slices the text into inputs of exactly 100 characters.
 > 
-> The core reason we use an **LSTM** rather than a Vanilla RNN is to resolve the vanishing gradient problem. The LSTM's additive cell state update acts as a gradient highway, allowing context to propagate over long timesteps.
+> For example, if the text is 'deep learning' and our sequence length is 4:
+> - The model takes the input sequence 'd', 'e', 'e', 'p'.
+> - The target letter we want the model to predict next is ' ' (the space).
+> - We map these letters to numbers: 'd' becomes 4, 'e' becomes 5, 'p' becomes 16, and space becomes 0. So the input is [4, 5, 5, 16] and the target is 0.
+> - Our model does this exact same mapping, but it slices the text into blocks of 100 characters to predict the 101st character.
 > 
-> For optimization, we use Cross-Entropy Loss calculated at each character timestep, and we apply gradient clipping with a maximum norm of 5.0 to prevent exploding gradients during Backpropagation Through Time."
+> We trained it on two very different styles of writing: William Shakespeare's plays, which are poetic and old-fashioned, and Sherlock Holmes detective stories, which are structured narrative novels."
 
-**What to do**: Scroll to Section 6 showing the Training Loss Curves plot.
-
-**What to say**:
-> "As you can see from our loss curves plot, both models trained smoothly on our system's GPU. The Shakespeare model's loss decreased from 2.17 to 0.99, and the Sherlock model's loss dropped to 1.13 over 8 epochs."
-
-**What to do**: Scroll to Section 7 showing the Generated Text outputs for different temperatures.
+**What to do**: Scroll to Section 3 & 4 (showing the model code).
 
 **What to say**:
-> "This section demonstrates the core experiment of this project: **Greedy Sampling vs. Temperature-based Sampling**.
+> "Here is our model structure. We defined a Python class called `CharLSTM` that inherits from PyTorch's `nn.Module`. 
 > 
-> When we use **Greedy Sampling (or Temperature = 0)**, the model always picks the character with the highest probability. As you can see on the screen, the model gets stuck in repetitive loops, repeating phrases like *'the world is a proper my lord, and my lord...'*.
+> Inside the code, we first use an `nn.Embedding` layer to convert each character number into a 128-dimensional vector. Then, we pass these vectors into a stacked 2-layer `nn.LSTM` with 256 memory units. Finally, we use an `nn.Linear` decoder layer to output a score for every possible next character.
 > 
-> When we set the temperature to **0.6**, we get the best balance of coherence and variety. The Shakespeare model successfully outputs dramatic dialogue using words like *'parish'*, *'voice'*, and the character marker *'all:'*. The Sherlock model outputs detective narrative terms like *'holmes'*, *'waiting'*, and *'band'*.
+> The reason we use an **LSTM** instead of a basic RNN is to solve the memory fading problem. In a basic RNN, training signals fade out or blow up over long sequences. LSTMs solve this by introducing a direct memory channel that keeps the training signals healthy.
 > 
-> If we push the temperature up to **1.5**, the output becomes high-entropy gibberish. The probability distribution is flattened, making character choices almost completely random."
+> In our training loop code, we calculate the `nn.CrossEntropyLoss`, call `loss.backward()` to run backpropagation, and use `nn.utils.clip_grad_norm_` to clip the gradients to 5.0 so our updates don't explode during training."
+
+**What to do**: Scroll to Section 6 (showing the Training Loss Curves plot).
+
+**What to say**:
+> "As you can see on the screen, the training loss dropped smoothly for both models. The Shakespeare model loss went down to 0.99, and the Sherlock model went down to 1.13 over 8 training loops."
+
+**What to do**: Scroll to Section 7 (showing the Generated Text output).
+
+**What to say**:
+> "This section shows our main experiment: testing the 'temperature' parameter, which controls the AI's creativity.
+> 
+> If we set the temperature to **0 (Greedy Mode)**, the AI plays it safe and always picks the single most likely letter. This makes it repeat itself in loops, like saying *'the world is the world is the world...'* over and over.
+> 
+> If we set the temperature to **0.6 (Balanced Mode)**, we get the best results. The spelling is correct, and the AI copies the poetic style of Shakespeare or the detective style of Sherlock Holmes perfectly.
+> 
+> But if we push it to **1.5 (High Mode)**, the AI becomes too random. The letters scramble, and it generates complete gibberish."
 
 ---
 
 ## Part 3: Project 23 (Batch Norm vs. No Batch Norm) (Approx. 3 Minutes)
 
-**What to do**: Go back to the Jupyter file explorer and open `Project 23 - Batch Norm vs No Batch Norm/task2_batch_norm.ipynb`.
+**What to do**: Go back to the Jupyter file manager, open the `Project 23 - Batch Norm vs No Batch Norm` folder, and open `task2_batch_norm.ipynb`.
 
 **What to say**:
 > "Now, Sir, I will demonstrate **Task 2: Batch Norm vs. No Batch Norm**.
 > 
-> Deep networks with 6 or more layers are notoriously difficult to train because of **internal covariate shift** and **vanishing or exploding gradients**. In this project, we built a 6-layer Deep MLP and ran three controlled experiments on the MNIST dataset to stress-test the model's robustness."
+> Deep neural networks with many layers—like the 6-layer model we built here to classify handwritten digits—are very hard to train because the signal shrinks or blows up as it goes deep. Batch Normalization works by automatically resizing the signals at each layer to keep them stable.
+> 
+> Looking at the code in this notebook, we created a modular neural network class called `DeepMLP`. We designed the constructor so that if the `use_batch_norm` flag is set to `True`, the code automatically inserts an `nn.BatchNorm1d` layer right before each `nn.ReLU` activation function. This allows us to toggle Batch Norm on and off easily.
+> 
+> We also wrote a training helper function that loops through PyTorch's `DataLoader` for MNIST, calculates cross-entropy loss, runs the `optim.SGD` optimizer to update parameters, and keeps track of training loss and test accuracy. We ran three experiments to compare a model with Batch Norm against a normal model without it."
 
-**What to do**: Scroll down to show Experiment 1 (Standard LR) results and plots.
+**What to do**: Scroll to Experiment 1 (Standard LR) results and plot.
 
 **What to say**:
-> "In **Experiment 1**, we trained both models using a standard learning rate of 0.01 and default He initialization. 
+> "In **Experiment 1**, we trained both models using a standard learning rate of 0.01. 
 > 
-> Looking at the plot, the Batch Normalized network converges much faster, reaching **97.10%** test accuracy. The baseline network without Batch Norm converges much more slowly, ending at **92.83%**."
+> Looking at the plot, the Batch Norm model (green line) trained much faster and reached **97.10%** accuracy. The normal model (red dashed line) was much slower and only reached **92.83%**."
 
-**What to do**: Scroll to Experiment 2 (High LR) results and plots.
-
-**What to say**:
-> "In **Experiment 2**, we stress-tested the networks with a very high learning rate of **0.2**. 
-> 
-> As you can see, the baseline model without Batch Norm completely fails. The loss stays stuck at **2.3026**, which is the entropy of random guessing on 10 classes ($-\ln(0.1)$), and accuracy is flat at **11.35%**. The gradients exploded, making the weights diverge.
-> 
-> However, the Batch Norm model trained perfectly, reaching its highest accuracy of **98.24%**. Batch Norm normalizes layer outputs, which restricts activation magnitudes and prevents gradients from exploding."
-
-**What to do**: Scroll to Experiment 3 (Suboptimal Init) results and plots.
+**What to do**: Scroll to Experiment 2 (High LR) results and plot.
 
 **What to say**:
-> "In **Experiment 3**, we initialized the weights to near-zero values with a standard deviation of **0.001**.
+> "In **Experiment 2**, we tested a high learning rate of **0.2** where the updates are very aggressive. 
 > 
-> Without Batch Norm, the signals shrank exponentially across the 6 layers, leading to vanishing gradients. The baseline model failed to learn, flatlining at **11.35%** accuracy.
+> The baseline model without Batch Norm failed completely, guessing randomly at **11.35%** accuracy (flat red line). This is because the weights exploded. 
 > 
-> But with Batch Norm, the network automatically rescaled the activations back to unit variance at each layer, restoring the signal. The BN model converged successfully, reaching **97.48%** test accuracy."
+> However, the model with Batch Norm trained perfectly and reached **98.24%** accuracy because Batch Norm kept the internal signals under control."
+
+**What to do**: Scroll to Experiment 3 (Suboptimal Init) results and plot.
+
+**What to say**:
+> "In **Experiment 3**, we started the model with weights that are extremely small—almost zero. 
+> 
+> Without Batch Norm, the signals vanished as they went through the 6 layers, and the model could not learn (accuracy flatlined at **11.35%**). 
+> 
+> But with Batch Norm, the network automatically scaled those tiny signals back up to a normal size, allowing it to train successfully to **97.48%** accuracy."
 
 ---
 
 ## Part 4: Conclusion (Approx. 30 Seconds)
 
 **What to say**:
-> "To conclude, our experiments show that LSTMs are highly effective at capturing stylistic features in sequence modeling, and Batch Normalization is a critical component that stabilizes deep networks against bad initializations and extreme learning rates.
+> "To sum up, our projects show that LSTMs are great at learning writing styles and spelling, and Batch Normalization is essential for keeping deep networks stable under extreme training conditions.
 > 
 > Thank you, Sir. We are ready for your questions."

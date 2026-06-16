@@ -152,11 +152,11 @@ This document outlines the slide deck (max 15 slides) covering both tasks. Each 
 ### Slide 13: Summary of Empirical Findings
 * Let's look at the results side-by-side:
 
-| Experiment | Metric | No Batch Norm (Baseline) | With Batch Norm |
-| :--- | :--- | :--- | :--- |
-| **Standard (LR=0.01)** | Test Accuracy | 92.83% | **97.10%** |
-| **High LR (0.2)** | Test Accuracy | 11.35% (Diverged) | **98.24%** (Trained) |
-| **Small Init ($\sigma=0.001$)** | Test Accuracy | 11.35% (Vanished) | **97.48%** (Trained) |
+| Experiment                      | Metric        | No Batch Norm (Baseline) | With Batch Norm      |
+| :------------------------------ | :------------ | :----------------------- | :------------------- |
+| **Standard (LR=0.01)**          | Test Accuracy | 92.83%                   | **97.10%**           |
+| **High LR (0.2)**               | Test Accuracy | 11.35% (Diverged)        | **98.24%** (Trained) |
+| **Small Init ($\sigma=0.001$)** | Test Accuracy | 11.35% (Vanished)        | **97.48%** (Trained) |
 
 * **Speaker Notes**:
   > "This table summarizes our empirical findings. We have demonstrated three distinct properties of Batch Norm: faster convergence, robustness to high learning rates, and independence from weight initialization scales. In all stress tests, the Batch Norm model trained successfully, while the baseline model failed."
