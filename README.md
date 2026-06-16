@@ -52,11 +52,21 @@ To view and run the notebooks interactively:
 
 ## 📊 Summary of Projects
 
-### Project 21: AI Story Continuation via Character-Level LSTM
-Project 21 explores character-level sequence modeling to generate natural language continuations. By training a stacked LSTM network on two distinct styles—William Shakespeare's dramatic plays and Arthur Conan Doyle's Sherlock Holmes novels—the model learns orthography, word boundaries, grammar, and style from scratch without any pre-defined word-level tokens. The network feeds character embedding vectors into a two-layer LSTM with 256 hidden units, using a dropout rate of 0.2 to prevent overfitting and gradient clipping to stabilize the training. During testing, we evaluate the model using different decoding sampling temperatures ($T$). Greedy sampling ($T=0$) causes the network to repeat high-probability sequences in loops, while high temperatures ($T \ge 1.0$) introduce high entropy, leading to spelling and structural disintegration. We find that a moderate temperature of $0.6$ provides the optimal balance, successfully outputting coherent sentences that accurately mimic the vocabulary and style of the source corpus.
+### Project 21: Character-Level LSTM Story Generator (Easy Language)
+This project is about training an AI to write stories character-by-character. Instead of giving the AI a list of English words, it starts with zero knowledge of English and learns spelling, punctuation, spacing, and writing styles entirely on its own. We trained this model on two very different kinds of writing: William Shakespeare's plays (which are poetic and old-fashioned) and Sherlock Holmes detective stories (which are structured detective novels). 
 
-### Project 23: Batch Normalization Stress-Testing
-Project 23 investigates the training dynamics of deep networks by comparing a 6-layer Feedforward Neural Network (MLP) with and without Batch Normalization on the MNIST dataset. Deep networks are notoriously hard to train due to internal covariate shift—where activation distributions shift as weights update—and vanishing or exploding gradients. Batch Normalization resolves this by normalizing intermediate activations to zero mean and unit variance over each mini-batch, and scaling/shifting them using learnable parameters. We conduct three controlled stress-test experiments. In standard training (learning rate = 0.01), Batch Norm accelerates convergence, leading to a test accuracy of 97.10% compared to 92.83% for the baseline. Under a high learning rate (0.2), the baseline network diverges due to exploding gradients (achieving only 11.35% accuracy, which represents random guessing), whereas the Batch Norm network trains stably to reach 98.24% accuracy. Finally, under suboptimal near-zero initialization ($\sigma=0.001$), the baseline network fails completely due to vanishing gradients, while the Batch Norm network rescales the signals at each layer, successfully converging to 97.48% test accuracy.
+To generate text, the AI looks at a window of 100 characters and guesses the next character. We tested three ways to make the AI generate stories:
+1. **Greedy Mode (Temperature = 0)**: The AI always picks the single most likely next letter. This causes the AI to get stuck in loops, repeating the same words over and over (e.g. *"the world is the world is the world..."*).
+2. **High Temperature Mode (Temperature = 1.5)**: The AI picks letters almost randomly. This results in chaotic text and gibberish, where spelling breaks down completely.
+3. **Balanced Mode (Temperature = 0.6)**: The AI picks letters in a smart, slightly creative way. This produces readable, correctly spelled text that perfectly mimics either Shakespeare's dramatic style or Sherlock's detective tone.
+
+### Project 23: Batch Normalization Analysis (Easy Language)
+This project compares two deep neural networks: one with a special feature called **Batch Normalization (Batch Norm)** and one without it. Deep networks (we used a 6-layer model to classify handwritten digits) are notoriously hard to train because the signal either shrinks to zero (vanishes) or grows to infinity (explodes) as it passes through many layers. Batch Norm works by automatically resizing the signals at each layer to make sure they stay stable.
+
+We ran three controlled experiments to test how Batch Norm helps:
+1. **Standard Training**: The model with Batch Norm trained much faster and reached a higher classification accuracy (**97.10%**) than the standard model (**92.83%**).
+2. **High Learning Rate Stress Test**: If the model takes updates that are too aggressive, the standard model fails completely and behaves like random guessing (11% accuracy). With Batch Norm, the signals are kept stable, allowing the model to train successfully and reach **98.24%** accuracy.
+3. **Suboptimal Initialization Stress Test**: If we start the network with weights that are near-zero, the signals vanish in a standard model and it learns nothing. With Batch Norm, the network rescales these small signals back up, letting the model train successfully to **97.48%** accuracy.
 
 ---
 
