@@ -53,19 +53,10 @@ To view and run the notebooks interactively:
 ## 📊 Summary of Projects
 
 ### Project 21: AI Story Continuation via Character-Level LSTM
-* **Objective**: Model natural language spelling, vocabulary, and grammar at a character-by-character level.
-* **Architecture**: Character Embedding (128-dim) $\to$ Stacked 2-Layer LSTM (256-units, 0.2 Dropout) $\to$ Linear Decoder.
-* **Findings**:
-  * **Greedy sampling ($T=0$)** causes the model to loop repetitively.
-  * **Moderate temperature ($T=0.6$)** generates style-appropriate sentences matching the target corpus (poetic Shakespeare plays vs narrative Sherlock Holmes stories).
-  * **High temperature ($T \ge 1.0$)** increases entropy and introduces spelling errors.
+Project 21 explores character-level sequence modeling to generate natural language continuations. By training a stacked LSTM network on two distinct styles—William Shakespeare's dramatic plays and Arthur Conan Doyle's Sherlock Holmes novels—the model learns orthography, word boundaries, grammar, and style from scratch without any pre-defined word-level tokens. The network feeds character embedding vectors into a two-layer LSTM with 256 hidden units, using a dropout rate of 0.2 to prevent overfitting and gradient clipping to stabilize the training. During testing, we evaluate the model using different decoding sampling temperatures ($T$). Greedy sampling ($T=0$) causes the network to repeat high-probability sequences in loops, while high temperatures ($T \ge 1.0$) introduce high entropy, leading to spelling and structural disintegration. We find that a moderate temperature of $0.6$ provides the optimal balance, successfully outputting coherent sentences that accurately mimic the vocabulary and style of the source corpus.
 
 ### Project 23: Batch Normalization Stress-Testing
-* **Objective**: Evaluate training convergence of a 6-layer Deep MLP on MNIST with and without Batch Normalization.
-* **Stress Test Experiments**:
-  1. **Standard training ($LR=0.01$)**: Batch Norm accelerates convergence, reaching **97.10%** test accuracy vs the baseline's **92.83%**.
-  2. **High Learning Rate ($LR=0.2$)**: Baseline network suffers from exploding gradients and completely fails (loss stuck at **2.3026**, accuracy **11.35%**). Batch Norm network stabilizes gradient magnitude, achieving **98.24%** test accuracy.
-  3. **Suboptimal Initialization ($\sigma=0.001$)**: Baseline network suffers from vanishing gradients (accuracy flatlines at **11.35%**). Batch Norm automatically rescales the variance at each layer, enabling convergence to **97.48%** test accuracy.
+Project 23 investigates the training dynamics of deep networks by comparing a 6-layer Feedforward Neural Network (MLP) with and without Batch Normalization on the MNIST dataset. Deep networks are notoriously hard to train due to internal covariate shift—where activation distributions shift as weights update—and vanishing or exploding gradients. Batch Normalization resolves this by normalizing intermediate activations to zero mean and unit variance over each mini-batch, and scaling/shifting them using learnable parameters. We conduct three controlled stress-test experiments. In standard training (learning rate = 0.01), Batch Norm accelerates convergence, leading to a test accuracy of 97.10% compared to 92.83% for the baseline. Under a high learning rate (0.2), the baseline network diverges due to exploding gradients (achieving only 11.35% accuracy, which represents random guessing), whereas the Batch Norm network trains stably to reach 98.24% accuracy. Finally, under suboptimal near-zero initialization ($\sigma=0.001$), the baseline network fails completely due to vanishing gradients, while the Batch Norm network rescales the signals at each layer, successfully converging to 97.48% test accuracy.
 
 ---
 
