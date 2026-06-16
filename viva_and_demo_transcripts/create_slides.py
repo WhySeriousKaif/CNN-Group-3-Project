@@ -56,7 +56,7 @@ def create_presentation():
         line.line.fill.background()
 
     def add_card(slide, left, top, width, height, border_color=BORDER_SUBTLE):
-        """Draws a rounded rectangle background card."""
+        """Draws a premium rounded rectangle background card."""
         card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, height)
         card.fill.solid()
         card.fill.fore_color.rgb = CARD_BG
@@ -76,254 +76,249 @@ def create_presentation():
         p.line_spacing = 1.15
 
     # ==========================================
-    # SLIDE 1: Title Slide
+    # SLIDE 1: Title Slide (Widescreen layout)
     # ==========================================
     slide_layout = prs.slide_layouts[6] # Blank layout
     slide = prs.slides.add_slide(slide_layout)
     apply_background(slide)
 
     # Title box
-    title_box = slide.shapes.add_textbox(Inches(0.8), Inches(1.8), Inches(11.733), Inches(1.8))
+    title_box = slide.shapes.add_textbox(Inches(0.8), Inches(1.6), Inches(11.733), Inches(1.8))
     tf = title_box.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
-    style_paragraph(p, "Optimization Dynamics and Sequence Generation in Deep Learning", HEADER_FONT, 38, ACCENT_GOLD, bold=True)
+    style_paragraph(p, "Optimization Dynamics and Sequence Generation in Deep Learning", HEADER_FONT, 36, ACCENT_GOLD, bold=True)
     p.alignment = PP_ALIGN.CENTER
 
     # Subtitle
     p_sub = tf.add_paragraph()
-    style_paragraph(p_sub, "Comparative Analysis of Batch Normalization & Character-Level LSTMs", BODY_FONT, 20, TEXT_MUTED, italic=True)
+    style_paragraph(p_sub, "Comparative Analysis of Batch Normalization & LSTMs", BODY_FONT, 20, TEXT_MUTED, italic=True)
     p_sub.alignment = PP_ALIGN.CENTER
 
     # Divider Line
-    line = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(1.5), Inches(4.5), Inches(10.333), Inches(0.02))
+    line = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(1.5), Inches(4.3), Inches(10.333), Inches(0.02))
     line.fill.solid()
     line.fill.fore_color.rgb = CARD_BORDER
     line.line.fill.background()
 
     # Column 1 Team members
-    team1_box = slide.shapes.add_textbox(Inches(1.5), Inches(4.8), Inches(5.0), Inches(2.2))
+    team1_box = slide.shapes.add_textbox(Inches(1.5), Inches(4.6), Inches(5.0), Inches(2.4))
     tf1 = team1_box.text_frame
     tf1.word_wrap = True
     
     p1 = tf1.paragraphs[0]
-    style_paragraph(p1, "MD Kaif Molla", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p1, "MD Kaif Molla", HEADER_FONT, 13, TEXT_WHITE, bold=True, space_after=1)
     p1_sub = tf1.add_paragraph()
-    style_paragraph(p1_sub, "md.24bcs10221@sst.scaler.com", BODY_FONT, 12, TEXT_MUTED, space_after=12)
+    style_paragraph(p1_sub, "md.24bcs10221@sst.scaler.com", BODY_FONT, 10, TEXT_MUTED, space_after=6)
     
     p2 = tf1.add_paragraph()
-    style_paragraph(p2, "Arhan Das", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p2, "Arhan Das", HEADER_FONT, 13, TEXT_WHITE, bold=True, space_after=1)
     p2_sub = tf1.add_paragraph()
-    style_paragraph(p2_sub, "Arhan.24bcs10023@sst.scaler.com", BODY_FONT, 12, TEXT_MUTED, space_after=12)
+    style_paragraph(p2_sub, "Arhan.24bcs10023@sst.scaler.com", BODY_FONT, 10, TEXT_MUTED, space_after=6)
 
     p3 = tf1.add_paragraph()
-    style_paragraph(p3, "Sumit Akhuli", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p3, "Sumit Akhuli", HEADER_FONT, 13, TEXT_WHITE, bold=True, space_after=1)
     p3_sub = tf1.add_paragraph()
-    style_paragraph(p3_sub, "Sumit.24bcs10158@sst.scaler.com", BODY_FONT, 12, TEXT_MUTED)
+    style_paragraph(p3_sub, "Sumit.24bcs10158@sst.scaler.com", BODY_FONT, 10, TEXT_MUTED, space_after=6)
+
+    p4 = tf1.add_paragraph()
+    style_paragraph(p4, "Shiva Gupta", HEADER_FONT, 13, TEXT_WHITE, bold=True, space_after=1)
+    p4_sub = tf1.add_paragraph()
+    style_paragraph(p4_sub, "shiva.24bcs10461@sst.scaler.com", BODY_FONT, 10, TEXT_MUTED)
 
     # Column 2 Team members
-    team2_box = slide.shapes.add_textbox(Inches(6.8), Inches(4.8), Inches(5.0), Inches(2.2))
+    team2_box = slide.shapes.add_textbox(Inches(6.8), Inches(4.6), Inches(5.0), Inches(2.4))
     tf2 = team2_box.text_frame
     tf2.word_wrap = True
     
-    p4 = tf2.paragraphs[0]
-    style_paragraph(p4, "Sarthak Mishra", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p4_sub = tf2.add_paragraph()
-    style_paragraph(p4_sub, "Sarthak.24bcs10470@sst.scaler.com", BODY_FONT, 12, TEXT_MUTED, space_after=12)
-    
-    p5 = tf2.add_paragraph()
-    style_paragraph(p5, "Netram Faran", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    p5 = tf2.paragraphs[0]
+    style_paragraph(p5, "Sarthak Mishra", HEADER_FONT, 13, TEXT_WHITE, bold=True, space_after=1)
     p5_sub = tf2.add_paragraph()
-    style_paragraph(p5_sub, "netram.24bcs10329@sst.scaler.com", BODY_FONT, 12, TEXT_MUTED, space_after=12)
-
+    style_paragraph(p5_sub, "Sarthak.24bcs10470@sst.scaler.com", BODY_FONT, 10, TEXT_MUTED, space_after=6)
+    
     p6 = tf2.add_paragraph()
-    style_paragraph(p6, "Aditya Prasad", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p6, "Netram Faran", HEADER_FONT, 13, TEXT_WHITE, bold=True, space_after=1)
     p6_sub = tf2.add_paragraph()
-    style_paragraph(p6_sub, "aditya.24bcs10179@sst.scaler.com", BODY_FONT, 12, TEXT_MUTED)
+    style_paragraph(p6_sub, "netram.24bcs10329@sst.scaler.com", BODY_FONT, 10, TEXT_MUTED, space_after=6)
+
+    p7 = tf2.add_paragraph()
+    style_paragraph(p7, "Aditya Prasad", HEADER_FONT, 13, TEXT_WHITE, bold=True, space_after=1)
+    p7_sub = tf2.add_paragraph()
+    style_paragraph(p7_sub, "aditya.24bcs10179@sst.scaler.com", BODY_FONT, 10, TEXT_MUTED)
+
 
     # ==========================================
-    # SLIDE 2: Task 1: AI Story Continuation Overview
+    # SLIDE 2: Task 1: AI Story Continuation Overview (Layout: Single Large Card)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Task 1: AI Story Continuation Overview")
 
-    # Card 1: Objective
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(5.1), Inches(4.5))
+    # Unified background card
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(11.733), Inches(5.0), CARD_BORDER)
+    
+    # Left sub-column
+    box1 = slide.shapes.add_textbox(Inches(1.2), Inches(1.85), Inches(5.2), Inches(4.5))
     tf = box1.text_frame
     tf.word_wrap = True
     style_paragraph(tf.paragraphs[0], "Project Objective", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
     
     p = tf.add_paragraph()
-    style_paragraph(p, "• Train a character-level Stacked LSTM network to generate story continuations from text prompts.", BODY_FONT, 14, TEXT_GRAY, space_after=12)
-    
+    style_paragraph(p, "• Train a character-level recurrent neural network to generate story continuations from text prompts.", BODY_FONT, 14, TEXT_GRAY, space_after=12)
     p = tf.add_paragraph()
-    style_paragraph(p, "• Forces the model to learn spelling, grammar, punctuation, and style from scratch, without using pre-defined word tokens.", BODY_FONT, 14, TEXT_GRAY, space_after=12)
-    
+    style_paragraph(p, "• Forces the model to learn spelling, grammar, punctuation, and style from scratch, without using pre-trained word tokens.", BODY_FONT, 14, TEXT_GRAY, space_after=12)
     p = tf.add_paragraph()
     style_paragraph(p, "• Serves as an illustration of sequence representation learning directly from raw text sequences.", BODY_FONT, 14, TEXT_GRAY)
 
-    # Card 2: Core Questions Explored
-    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), BORDER_SUBTLE)
-    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Core Questions Explored", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    # Right sub-column
+    box2 = slide.shapes.add_textbox(Inches(6.933), Inches(1.85), Inches(5.2), Inches(4.5))
+    tf2 = box2.text_frame
+    tf2.word_wrap = True
+    style_paragraph(tf2.paragraphs[0], "Core Questions Explored", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
 
-    p = tf.add_paragraph()
+    p = tf2.add_paragraph()
     style_paragraph(p, "• Representation Learning: Can a model learn English syntax and style entirely at the character level?", BODY_FONT, 14, TEXT_GRAY, space_after=12)
-
-    p = tf.add_paragraph()
+    p = tf2.add_paragraph()
     style_paragraph(p, "• Decoding Strategies: How does deterministic greedy decoding compare to temperature-based probabilistic sampling?", BODY_FONT, 14, TEXT_GRAY, space_after=12)
-
-    p = tf.add_paragraph()
+    p = tf2.add_paragraph()
     style_paragraph(p, "• Stylistic Nuance: How does the style of the training corpus affect the vocabulary, tone, and pacing of the generated output?", BODY_FONT, 14, TEXT_GRAY)
 
 
     # ==========================================
-    # SLIDE 3: Sequence Modeling: LSTM Architecture
+    # SLIDE 3: Sequence Modeling: LSTM Architecture (Layout: 3 Narrow Columns)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Sequence Modeling: LSTM Architecture")
 
-    # Card 1: Why LSTM & Gating
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.0), BORDER_SUBTLE)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box1.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Why LSTM & Gating Mechanism?", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=8)
+    # Column 1 (Left): Why LSTM?
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(3.7), Inches(5.0), BORDER_SUBTLE)
+    box1 = slide.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(3.3), Inches(4.6))
+    tf1 = box1.text_frame
+    tf1.word_wrap = True
+    style_paragraph(tf1.paragraphs[0], "Why LSTM?", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=12)
+    p = tf1.add_paragraph()
+    style_paragraph(p, "• Vanilla RNNs suffer from vanishing and exploding gradients due to repeated temporal multiplications.\n\n• LSTMs solve this by establishing cell states (Cₜ) acting as information highways where gradients can flow back freely over time.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Vanilla RNNs suffer from vanishing and exploding gradients due to repeated temporal multiplications.", BODY_FONT, 12, TEXT_GRAY, space_after=8)
+    # Column 2 (Middle): Gating Mechanism (Highlighted)
+    add_card(slide, Inches(4.816), Inches(1.6), Inches(3.7), Inches(5.0), CARD_BORDER)
+    box2 = slide.shapes.add_textbox(Inches(5.016), Inches(1.8), Inches(3.3), Inches(4.6))
+    tf2 = box2.text_frame
+    tf2.word_wrap = True
+    style_paragraph(tf2.paragraphs[0], "Gating Mechanism", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=12)
+    
+    p = tf2.add_paragraph()
+    style_paragraph(p, "• Forget Gate (f_t):", BODY_FONT, 13, TEXT_WHITE, bold=True, space_after=2)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "  Decides what history to discard.", BODY_FONT, 12, TEXT_GRAY, space_after=10)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• LSTM gates control information flow through cell state (Cₜ):", BODY_FONT, 12, TEXT_GRAY, space_after=8)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "• Input Gate (i_t):", BODY_FONT, 13, TEXT_WHITE, bold=True, space_after=2)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "  Decides what new values to write to the cell state.", BODY_FONT, 12, TEXT_GRAY, space_after=10)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Forget Gate: Decides what history to discard.", BODY_FONT, 12, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "      fₜ = σ(W_f · [hₜ₋₁, xₜ] + b_f)", HEADER_FONT, 13, ACCENT_GOLD, bold=True, space_after=6)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "• Output Gate (o_t):", BODY_FONT, 13, TEXT_WHITE, bold=True, space_after=2)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "  Decides what hidden state to output.", BODY_FONT, 12, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Input Gate: Decides what new details to store in cell state.", BODY_FONT, 12, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "      iₜ = σ(W_i · [hₜ₋₁, xₜ] + b_i)", HEADER_FONT, 13, ACCENT_GOLD, bold=True, space_after=6)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Output Gate: Decides what hidden state (hₜ) to output.", BODY_FONT, 12, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "      oₜ = σ(W_o · [h₁₋₁, xₜ] + b_o)", HEADER_FONT, 13, ACCENT_GOLD, bold=True)
-
-    # Card 2: Network Configuration
-    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
-    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Our LSTM Network Configuration", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Embedding Layer:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Projects character indices to 128-dimensional dense vectors.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Stacked LSTM Layers:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - 2 layers with 256 hidden units each.\n  - Dropout rate of 0.2 after each layer to prevent overfitting.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Linear Decoder Layer:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Projects the 256-dim hidden states to character vocabulary logits.", BODY_FONT, 13, TEXT_GRAY)
+    # Column 3 (Right): Our Network Config
+    add_card(slide, Inches(8.833), Inches(1.6), Inches(3.7), Inches(5.0), BORDER_SUBTLE)
+    box3 = slide.shapes.add_textbox(Inches(9.033), Inches(1.8), Inches(3.3), Inches(4.6))
+    tf3 = box3.text_frame
+    tf3.word_wrap = True
+    style_paragraph(tf3.paragraphs[0], "Our Network", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=12)
+    p = tf3.add_paragraph()
+    style_paragraph(p, "• Embedding Layer:\n  Converts character indices to 128-dimensional dense vectors.\n\n• Stacked LSTM:\n  2 layers with 256 memory units, using 0.2 Dropout to prevent overfitting.\n\n• Linear Decoder:\n  Maps 256 hidden features to vocabulary logits.", BODY_FONT, 13, TEXT_GRAY)
 
 
     # ==========================================
-    # SLIDE 4: Data Pipeline & Corpuses
+    # SLIDE 4: Data Pipeline & Corpuses (Layout: 2 Top split cards, 1 Unified bottom card)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Data Pipeline & Corpuses")
 
-    # Card 1: Corpuses
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.0), BORDER_SUBTLE)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(5.1), Inches(4.5))
+    # Top Left Card
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(2.3), CARD_BORDER)
+    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.75), Inches(5.1), Inches(2.0))
     tf = box1.text_frame
     tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Contrasting Training Corpuses", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    style_paragraph(tf.paragraphs[0], "Shakespeare plays", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=4)
+    p = tf.add_paragraph()
+    style_paragraph(p, "• Dramatic old English vocabulary, poetic structures.\n• Compact vocabulary of 37 unique characters.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Shakespeare Corpus (tinyshakespeare):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Poetic syntax, old English vocabulary, dialogue structure.\n  - Vocabulary size: 37 unique characters.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
+    # Top Right Card
+    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(2.3), CARD_BORDER)
+    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.75), Inches(5.1), Inches(2.0))
+    tf2 = box2.text_frame
+    tf2.word_wrap = True
+    style_paragraph(tf2.paragraphs[0], "Sherlock Holmes", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=4)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "• 19th-century detective stories, structured narrative prose.\n• Larger vocabulary of 57 unique characters.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Sherlock Holmes Corpus (Conan Doyle):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - 19th-century detective prose, narrative syntax, descriptive style.\n  - Vocabulary size: 57 unique characters.", BODY_FONT, 13, TEXT_GRAY)
+    # Bottom Full-width Card
+    add_card(slide, Inches(0.8), Inches(4.2), Inches(11.733), Inches(2.4), BORDER_SUBTLE)
+    
+    # Left column of bottom card
+    box3_l = slide.shapes.add_textbox(Inches(1.05), Inches(4.35), Inches(5.3), Inches(2.1))
+    tf3_l = box3_l.text_frame
+    tf3_l.word_wrap = True
+    style_paragraph(tf3_l.paragraphs[0], "Preprocessing Pipeline", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=6)
+    p = tf3_l.add_paragraph()
+    style_paragraph(p, "• Lowercase Conversion: Keeps the vocabulary size compact for faster convergence.", BODY_FONT, 13, TEXT_GRAY)
 
-    # Card 2: Preprocessing
-    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
-    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Data Preprocessing & Preparation", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Lowercase Normalization:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Reduced all characters to lowercase to keep the vocabulary sizes compact, leading to faster training.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Input-Target Slicing:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Sliced raw text into overlapping sequences of length T = 100.\n  - Target sequence is shifted by one character.\n  - Model learns to predict next character at each time step.", BODY_FONT, 13, TEXT_GRAY)
+    # Right column of bottom card
+    box3_r = slide.shapes.add_textbox(Inches(6.933), Inches(4.35), Inches(5.3), Inches(2.1))
+    tf3_r = box3_r.text_frame
+    tf3_r.word_wrap = True
+    style_paragraph(tf3_r.paragraphs[0], "Input-Target Slicing", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=6)
+    p = tf3_r.add_paragraph()
+    style_paragraph(p, "• Slices raw text into overlapping input sequences of length T = 100 characters. Target sequences are shifted by one character.", BODY_FONT, 13, TEXT_GRAY)
 
 
     # ==========================================
-    # SLIDE 5: Decoding and Sampling Techniques
+    # SLIDE 5: Decoding and Sampling Techniques (Layout: 1 Left column card, 3 Right horizontal stack cards)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Decoding and Sampling Techniques")
 
-    # Card 1: Greedy vs Temp
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(5.1), Inches(4.5))
+    # Left card: Concept
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(4.5), Inches(5.0), BORDER_SUBTLE)
+    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(4.0), Inches(4.5))
     tf = box1.text_frame
     tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Greedy vs. Temperature Sampling", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    style_paragraph(tf.paragraphs[0], "Decoding Overview", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    
+    p = tf.add_paragraph()
+    style_paragraph(p, "• Greedy Decoding (T = 0):\n  - Always selects the character with the absolute highest probability.\n  - Very deterministic, but highly prone to getting stuck in infinite repeating loops.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
 
     p = tf.add_paragraph()
-    style_paragraph(p, "• Greedy Decoding (T = 0):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Always selects the character with the maximum probability.\n  - Highly deterministic, but prone to repeating words and getting stuck in infinite loops.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
+    style_paragraph(p, "• Temperature Sampling (T > 0):\n  - Scales the logits by dividing them by T before applying Softmax to control randomness.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Temperature Sampling (T > 0):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Scales logits before the Softmax function to adjust entropy:", BODY_FONT, 13, TEXT_GRAY, space_after=4)
-    p = tf.add_paragraph()
-    style_paragraph(p, "      P(cᵢ) = exp(logits_i / T) / Σⱼ exp(logits_j / T)", HEADER_FONT, 16, ACCENT_GOLD, bold=True)
+    # Right Stack Card 1 (Low Temp)
+    add_card(slide, Inches(5.6), Inches(1.6), Inches(6.933), Inches(1.4), BORDER_SUBTLE)
+    box_s1 = slide.shapes.add_textbox(Inches(5.85), Inches(1.75), Inches(6.433), Inches(1.1))
+    tf_s1 = box_s1.text_frame
+    tf_s1.word_wrap = True
+    style_paragraph(tf_s1.paragraphs[0], "Low Temperature (T = 0.2)", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    p = tf_s1.add_paragraph()
+    style_paragraph(p, "• Highly conservative, repetitive, and safe output. Vocabulary remains narrow.", BODY_FONT, 12, TEXT_GRAY)
 
-    # Card 2: Temp settings
-    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), BORDER_SUBTLE)
-    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Effects of Temperature Settings", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    # Right Stack Card 2 (Balanced Temp - Highlighted)
+    add_card(slide, Inches(5.6), Inches(3.4), Inches(6.933), Inches(1.4), CARD_BORDER)
+    box_s2 = slide.shapes.add_textbox(Inches(5.85), Inches(3.55), Inches(6.433), Inches(1.1))
+    tf_s2 = box_s2.text_frame
+    tf_s2.word_wrap = True
+    style_paragraph(tf_s2.paragraphs[0], "Balanced Temperature (T = 0.6) — Recommended", HEADER_FONT, 14, ACCENT_GOLD, bold=True, space_after=2)
+    p = tf_s2.add_paragraph()
+    style_paragraph(p, "• High quality output: creative and styled language with correct spelling.", BODY_FONT, 12, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Low Temperature (T = 0.2):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Very conservative output, highly repetitive, lacks creativity.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Moderate Temperature (T = 0.6):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Optimal balance: creative vocabulary, fluent syntax, and very few spelling/grammar mistakes.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• High Temperature (T >= 1.0):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Extreme entropy: highly chaotic, frequent spelling mistakes, outputs look like random gibberish.", BODY_FONT, 13, TEXT_GRAY)
+    # Right Stack Card 3 (High Temp)
+    add_card(slide, Inches(5.6), Inches(5.2), Inches(6.933), Inches(1.4), BORDER_SUBTLE)
+    box_s3 = slide.shapes.add_textbox(Inches(5.85), Inches(5.35), Inches(6.433), Inches(1.1))
+    tf_s3 = box_s3.text_frame
+    tf_s3.word_wrap = True
+    style_paragraph(tf_s3.paragraphs[0], "High Temperature (T = 1.5)", HEADER_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    p = tf_s3.add_paragraph()
+    style_paragraph(p, "• Complete chaos. Grammatical structure collapses and words disintegrate into random gibberish.", BODY_FONT, 12, TEXT_GRAY)
 
 
     # ==========================================
@@ -345,7 +340,7 @@ def create_presentation():
     style_paragraph(p, "  - Shakespeare Model: final loss of 0.9955 (8 epochs).\n  - Sherlock Model: final loss of 1.1377.", BODY_FONT, 12, TEXT_GRAY, space_after=8)
 
     p = tf.add_paragraph()
-    style_paragraph(p, "• Stylistic Comparison (Prompt: \"the secret of \")", BODY_FONT, 13, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p, "• Generated Samples (Prompt: \"the secret of \")", BODY_FONT, 13, TEXT_WHITE, bold=True, space_after=2)
     
     p = tf.add_paragraph()
     style_paragraph(p, "  - Shakespeare (T=0.6):", BODY_FONT, 12, ACCENT_GOLD, bold=True, space_after=2)
@@ -366,95 +361,74 @@ def create_presentation():
 
 
     # ==========================================
-    # SLIDE 7: Task 2: Batch Norm vs. No Batch Norm
+    # SLIDE 7: Task 2: Batch Norm vs. No Batch Norm (Layout: Single Large Card)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Task 2: Batch Norm vs. No Batch Norm")
 
-    # Card 1: Objective
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(5.1), Inches(4.5))
+    # Unified background card
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(11.733), Inches(5.0), CARD_BORDER)
+    
+    # Left sub-column
+    box1 = slide.shapes.add_textbox(Inches(1.2), Inches(1.85), Inches(5.2), Inches(4.5))
     tf = box1.text_frame
     tf.word_wrap = True
     style_paragraph(tf.paragraphs[0], "Project Objective", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
-
+    
     p = tf.add_paragraph()
     style_paragraph(p, "• Train and compare deep feedforward neural networks (6 layers) with and without Batch Normalization on the MNIST dataset.", BODY_FONT, 14, TEXT_GRAY, space_after=12)
-
     p = tf.add_paragraph()
-    style_paragraph(p, "• Systematically evaluate convergence speed, final test accuracy, and stability under different optimization stress-tests.", BODY_FONT, 14, TEXT_GRAY, space_after=12)
+    style_paragraph(p, "• Systematically evaluate convergence speed, final test accuracy, and stability under different optimization stress-tests.", BODY_FONT, 14, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Provide empirical evidence demonstrating how normalization rescues deep models from training failure.", BODY_FONT, 14, TEXT_GRAY)
+    # Right sub-column
+    box2 = slide.shapes.add_textbox(Inches(6.933), Inches(1.85), Inches(5.2), Inches(4.5))
+    tf2 = box2.text_frame
+    tf2.word_wrap = True
+    style_paragraph(tf2.paragraphs[0], "Core Challenges in Deep Networks", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
 
-    # Card 2: Key Challenges
-    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), BORDER_SUBTLE)
-    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Key Challenges in Deep Networks", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
-
-    p = tf.add_paragraph()
+    p = tf2.add_paragraph()
     style_paragraph(p, "• Internal Covariate Shift:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Distributions of layer activations shift continuously as weights update during training, forcing later layers to constantly adapt.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Vanishing & Exploding Gradients:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Error signals shrink to near-zero or expand exponentially as they propagate backward through many layers, halting learning.", BODY_FONT, 13, TEXT_GRAY)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "  - Activation distributions shift continuously as weights update during training, slowing down training and forcing small learning rates.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
+    
+    p = tf2.add_paragraph()
+    style_paragraph(p, "• Vanishing/Exploding Gradients:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "  - Signals vanish or blow up as they propagate through deep layers, stopping learning or causing divergence.", BODY_FONT, 13, TEXT_GRAY)
 
 
     # ==========================================
-    # SLIDE 8: Deep MLP Architecture and Setup
+    # SLIDE 8: Deep MLP Architecture and Setup (Layout: 3 Narrow Columns)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Deep MLP Architecture and Setup")
 
-    # Card 1: Setup details
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.0), BORDER_SUBTLE)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box1.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Dataset & Model Configuration", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    # Column 1 (Left): Dataset
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(3.7), Inches(5.0), BORDER_SUBTLE)
+    box1 = slide.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(3.3), Inches(4.6))
+    tf1 = box1.text_frame
+    tf1.word_wrap = True
+    style_paragraph(tf1.paragraphs[0], "Dataset", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=12)
+    p = tf1.add_paragraph()
+    style_paragraph(p, "• MNIST Digits Classification:\n  Grayscale 28x28 handwritten digit images.\n\n• Splits:\n  60,000 training samples and 10,000 testing samples, divided into 10 class categories.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Dataset: MNIST Handwritten Digits", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - 60,000 training images, 10,000 test images (28x28 grayscale digits).", BODY_FONT, 13, TEXT_GRAY, space_after=12)
+    # Column 2 (Middle): Configuration
+    add_card(slide, Inches(4.816), Inches(1.6), Inches(3.7), Inches(5.0), CARD_BORDER)
+    box2 = slide.shapes.add_textbox(Inches(5.016), Inches(1.8), Inches(3.3), Inches(4.6))
+    tf2 = box2.text_frame
+    tf2.word_wrap = True
+    style_paragraph(tf2.paragraphs[0], "Configuration (6 Layers)", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=12)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "• Input Layer:\n  784 nodes (flattened 28x28 pixels).\n\n• Hidden Layers:\n  5 layers with 512 nodes each.\n\n• Output Layer:\n  10 nodes (digit category scores).\n\n• Activation:\n  ReLU in all hidden layers.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Network Dimensions:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Input Layer: Flattened image vector of size 784.", BODY_FONT, 13, TEXT_GRAY, space_after=4)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Hidden Layers: 5 layers with 512 hidden units each.", BODY_FONT, 13, TEXT_GRAY, space_after=4)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Output Layer: 10 units with Softmax for digit class logits.", BODY_FONT, 13, TEXT_GRAY, space_after=4)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Activation Function: Rectified Linear Unit (ReLU) after each layer.", BODY_FONT, 13, TEXT_GRAY)
-
-    # Card 2: Comparative variables
-    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
-    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Comparative Experimental Setups", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Setup A: Baseline Network (No BN)", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Fully Connected (Linear) -> ReLU Activation.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Setup B: Normalized Network (With BN)", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Fully Connected -> BatchNorm1d -> ReLU Activation.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Optimization settings:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Trained both setups using standard Mini-batch Stochastic Gradient Descent (SGD) with batch size of 64.", BODY_FONT, 13, TEXT_GRAY)
+    # Column 3 (Right): Tested Setups
+    add_card(slide, Inches(8.833), Inches(1.6), Inches(3.7), Inches(5.0), BORDER_SUBTLE)
+    box3 = slide.shapes.add_textbox(Inches(9.033), Inches(1.8), Inches(3.3), Inches(4.6))
+    tf3 = box3.text_frame
+    tf3.word_wrap = True
+    style_paragraph(tf3.paragraphs[0], "Tested Setups", HEADER_FONT, 16, ACCENT_GOLD, bold=True, space_after=12)
+    p = tf3.add_paragraph()
+    style_paragraph(p, "• Setup A (Baseline):\n  Standard MLP with Linear -> ReLU layers. No batch normalization.\n\n• Setup B (Batch Norm):\n  Normalized MLP with Linear -> BatchNorm1d -> ReLU layers.\n\n• Optimization:\n  Mini-batch SGD with batch size = 64.", BODY_FONT, 13, TEXT_GRAY)
 
 
     # ==========================================
@@ -478,7 +452,7 @@ def create_presentation():
     p = tf.add_paragraph()
     style_paragraph(p, "• Observations:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - With Batch Norm: Converges much faster, reaching 97.10% test accuracy.", BODY_FONT, 13, TEXT_GRAY, space_after=4)
+    style_paragraph(p, "  - With Batch Norm: Converges rapidly, reaching 97.10% test accuracy.", BODY_FONT, 13, TEXT_GRAY, space_after=4)
     p = tf.add_paragraph()
     style_paragraph(p, "  - No Batch Norm: Converges slowly, reaching 92.83% test accuracy.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
 
@@ -496,14 +470,21 @@ def create_presentation():
 
 
     # ==========================================
-    # SLIDE 10: Experiment 2: Stress-Test with High Learning Rate
+    # SLIDE 10: Experiment 2: Stress-Test with High Learning Rate (Layout: Flipped split layout)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Experiment 2: High Learning Rate Stress Test")
 
-    # Left Card: Info
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.2), Inches(5.0), BORDER_SUBTLE)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(4.7), Inches(4.5))
+    # Left Card: Image Frame (Flipped!)
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(6.133), Inches(5.0), CARD_BORDER)
+    # Add Image
+    img_path = "extracted_plots/task2_exp2_high_lr.png"
+    if os.path.exists(img_path):
+        slide.shapes.add_picture(img_path, Inches(1.0), Inches(1.8), Inches(5.733), Inches(4.6))
+
+    # Right Card: Info
+    add_card(slide, Inches(7.333), Inches(1.6), Inches(5.2), Inches(5.0), BORDER_SUBTLE)
+    box1 = slide.shapes.add_textbox(Inches(7.583), Inches(1.85), Inches(4.7), Inches(4.5))
     tf = box1.text_frame
     tf.word_wrap = True
     style_paragraph(tf.paragraphs[0], "High Learning Rate Stress Test", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
@@ -511,26 +492,19 @@ def create_presentation():
     p = tf.add_paragraph()
     style_paragraph(p, "• Hyperparameters:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - Learning rate = 0.2, standard initialization, trained for 5 epochs.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
+    style_paragraph(p, "  - Learning rate = 0.2 (extremely aggressive), trained for 5 epochs.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
 
     p = tf.add_paragraph()
     style_paragraph(p, "• Observations:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - With Batch Norm: Trains stably and converges to 98.24% test accuracy (highest accuracy achieved).", BODY_FONT, 13, TEXT_GRAY, space_after=4)
+    style_paragraph(p, "  - With Batch Norm: Extremely stable training, reaching 98.24% test accuracy (best overall score).", BODY_FONT, 13, TEXT_GRAY, space_after=4)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - No Batch Norm: Fails completely to learn. Loss flatlines at 2.3026, test accuracy stays at 11.35% (random guessing).", BODY_FONT, 13, TEXT_GRAY, space_after=12)
+    style_paragraph(p, "  - No Batch Norm: Fails completely. Weights explode, loss flatlines at 2.3026, and accuracy stays stuck at 11.35% (random guessing).", BODY_FONT, 13, TEXT_GRAY, space_after=12)
 
     p = tf.add_paragraph()
     style_paragraph(p, "• Key Takeaway:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - Batch Norm scale-invariance stabilizes gradient updates, permitting higher learning rates that accelerate training.", BODY_FONT, 13, TEXT_GRAY)
-
-    # Right Card: Image Frame
-    add_card(slide, Inches(6.4), Inches(1.6), Inches(6.133), Inches(5.0), CARD_BORDER)
-    # Add Image
-    img_path = "extracted_plots/task2_exp2_high_lr.png"
-    if os.path.exists(img_path):
-        slide.shapes.add_picture(img_path, Inches(6.6), Inches(1.8), Inches(5.733), Inches(4.6))
+    style_paragraph(p, "  - Batch Norm scale-invariance stabilizes gradient updates, allowing the network to train under massive learning rates.", BODY_FONT, 13, TEXT_GRAY)
 
 
     # ==========================================
@@ -554,9 +528,9 @@ def create_presentation():
     p = tf.add_paragraph()
     style_paragraph(p, "• Observations:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - With Batch Norm: Successfully rescues training, converging to 97.48% test accuracy.", BODY_FONT, 13, TEXT_GRAY, space_after=4)
+    style_paragraph(p, "  - With Batch Norm: Successfully rescales weak signals, training to 97.48% test accuracy.", BODY_FONT, 13, TEXT_GRAY, space_after=4)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - No Batch Norm: Fails completely. Loss remains stuck at 2.3026, test accuracy stuck at 11.35% (vanishing gradients).", BODY_FONT, 13, TEXT_GRAY, space_after=12)
+    style_paragraph(p, "  - No Batch Norm: Fails completely. Signal vanishes through 6 layers; loss stays at 2.3026, test accuracy stuck at 11.35% (vanishing gradients).", BODY_FONT, 13, TEXT_GRAY, space_after=12)
 
     p = tf.add_paragraph()
     style_paragraph(p, "• Key Takeaway:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
@@ -609,12 +583,12 @@ def create_presentation():
     box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
     tf = box2.text_frame
     tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Why it Stabilizes Gradient Flow", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    style_paragraph(tf.paragraphs[0], "Scale Invariance Intuition", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
 
     p = tf.add_paragraph()
-    style_paragraph(p, "• Decoupling Weight scale from Activation scale:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p, "• Mathematical Scale Invariance:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - Dividing by standard deviation ensures activations never shrink to zero or blow up to infinity, regardless of weight magnitudes.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
+    style_paragraph(p, "  - Because we divide by the standard deviation, scaling the weights by any factor does not change the output of the normalization layer. This stabilizes gradient flow.", BODY_FONT, 13, TEXT_GRAY, space_after=12)
 
     p = tf.add_paragraph()
     style_paragraph(p, "• Preserving Representation Capacity (γ and β):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
@@ -652,9 +626,9 @@ def create_presentation():
     # Table Contents
     data = [
         ["Experiment", "Metric", "No Batch Norm (Baseline)", "With Batch Norm"],
-        ["Standard Training (LR=0.01)", "Test Accuracy", "92.83%", "97.10% (Accelerated)"],
-        ["High Learning Rate Stress Test (LR=0.2)", "Test Accuracy", "11.35% (Diverged)", "98.24% (Stable)"],
-        ["Suboptimal Initialization (σ=0.001)", "Test Accuracy", "11.35% (Vanished)", "97.48% (Rescued)"]
+        ["Standard Training (LR=0.01)", "Test Accuracy", "92.83%", "97.10% (Trained)"],
+        ["High Learning Rate Stress Test (LR=0.2)", "Test Accuracy", "11.35% (Diverged)", "98.24% (Trained)"],
+        ["Suboptimal Initialization (σ=0.001)", "Test Accuracy", "11.35% (Vanished)", "97.48% (Trained)"]
     ]
 
     for r_idx, row in enumerate(data):
@@ -694,44 +668,37 @@ def create_presentation():
 
 
     # ==========================================
-    # SLIDE 14: Connections to Deep Learning Theory (Weeks 1-7)
+    # SLIDE 14: Connections to Deep Learning Theory (Layout: 3 Horizontal Stacked Cards)
     # ==========================================
     slide = prs.slides.add_slide(slide_layout)
     add_slide_header(slide, "Connections to Deep Learning Theory")
 
-    # Card 1: Universal Approx & Init
-    add_card(slide, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.0), BORDER_SUBTLE)
-    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box1.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Universal Approximation & Initialization", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
+    # Card 1: Representation Learning
+    add_card(slide, Inches(0.8), Inches(1.6), Inches(11.733), Inches(1.4), BORDER_SUBTLE)
+    box1 = slide.shapes.add_textbox(Inches(1.05), Inches(1.7), Inches(11.233), Inches(1.2))
+    tf1 = box1.text_frame
+    tf1.word_wrap = True
+    style_paragraph(tf1.paragraphs[0], "• Representation Learning:", HEADER_FONT, 14, ACCENT_GOLD, bold=True, space_after=2)
+    p = tf1.add_paragraph()
+    style_paragraph(p, "  Character-level LSTMs automatically discover complex spelling, grammar, and language patterns directly from raw sequences without manual, hard-coded rules.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Universal Approximation Theorem:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Standard deep feedforward networks and Recurrent structures can approximate arbitrary complex non-linear mappings. Character-level LSTMs utilize this representation capacity to discover language syntax dynamically from character context.", BODY_FONT, 12, TEXT_GRAY, space_after=16)
+    # Card 2: Initialization (Highlighted)
+    add_card(slide, Inches(0.8), Inches(3.2), Inches(11.733), Inches(1.4), CARD_BORDER)
+    box2 = slide.shapes.add_textbox(Inches(1.05), Inches(3.3), Inches(11.233), Inches(1.2))
+    tf2 = box2.text_frame
+    tf2.word_wrap = True
+    style_paragraph(tf2.paragraphs[0], "• Weight Initialization Dynamics:", HEADER_FONT, 14, ACCENT_GOLD, bold=True, space_after=2)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "  Kaiming initialization works well under normal conditions, but is highly sensitive to depth. Batch Norm relaxes this scale dependency by dynamically adjusting variance.", BODY_FONT, 13, TEXT_GRAY)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Weight Initialization (Xavier / He):", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - Proper initialization (e.g. He initialization for ReLU) is critical to prevent activation variance from vanishing or exploding in deep layers. Batch Norm relaxes this structural requirement by dynamically rescaling the variance at every layer.", BODY_FONT, 12, TEXT_GRAY)
-
-    # Card 2: Optimization landscapes
-    add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
-    box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Optimization Dynamics & Regularization", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Optimization Landscapes:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - High learning rates cause gradient updates to overshoot local minima and diverge. Batch Norm smoothens the optimization landscape, preventing gradients from exploding and making optimization highly stable.", BODY_FONT, 12, TEXT_GRAY, space_after=16)
-
-    p = tf.add_paragraph()
-    style_paragraph(p, "• Implicit Regularization:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
-    p = tf.add_paragraph()
-    style_paragraph(p, "  - The calculation of mean and variance over finite mini-batches introduces moderate stochastic noise into layer activations. This noise acts as a regularizer, reducing overfitting similar to Dropout.", BODY_FONT, 12, TEXT_GRAY)
+    # Card 3: Optimization Landscapes
+    add_card(slide, Inches(0.8), Inches(4.8), Inches(11.733), Inches(1.4), BORDER_SUBTLE)
+    box3 = slide.shapes.add_textbox(Inches(1.05), Inches(4.9), Inches(11.233), Inches(1.2))
+    tf3 = box3.text_frame
+    tf3.word_wrap = True
+    style_paragraph(tf3.paragraphs[0], "• Optimization landscapes:", HEADER_FONT, 14, ACCENT_GOLD, bold=True, space_after=2)
+    p = tf3.add_paragraph()
+    style_paragraph(p, "  Deep backpropagation requires gradient stability. Batch Norm smoothens the loss landscape, preventing gradient explosion and allowing for higher learning rates.", BODY_FONT, 13, TEXT_GRAY)
 
 
     # ==========================================
@@ -748,36 +715,40 @@ def create_presentation():
     style_paragraph(tf.paragraphs[0], "Key Summary Takeaways", HEADER_FONT, 18, ACCENT_GOLD, bold=True, space_after=12)
 
     p = tf.add_paragraph()
-    style_paragraph(p, "• Sequence Modeling with LSTMs:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p, "• Task 1 Sequence Modeling:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - Stacked LSTMs can successfully learn the structural, orthographical, and grammatical rules of natural text entirely from character sequences without pre-defined vocabularies.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
+    style_paragraph(p, "  - Character-level LSTMs successfully capture the structural, orthographical, and grammatical nuances of different corpuses.", BODY_FONT, 13, TEXT_GRAY, space_after=16)
 
     p = tf.add_paragraph()
-    style_paragraph(p, "• Activation Normalization with Batch Norm:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
+    style_paragraph(p, "• Task 2 Normalization:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=2)
     p = tf.add_paragraph()
-    style_paragraph(p, "  - Batch Normalization is a critical architectural element that stabilizes training, accelerates convergence, and provides extreme robustness to learning rates and initialization scales.", BODY_FONT, 13, TEXT_GRAY)
+    style_paragraph(p, "  - Batch Normalization is a critical architectural component for deep networks, providing optimization speedup and stability under stress.", BODY_FONT, 13, TEXT_GRAY)
 
-    # Card 2: Thank you panel
+    # Card 2: Thank you panel (Highlighted)
     add_card(slide, Inches(6.933), Inches(1.6), Inches(5.6), Inches(5.0), CARD_BORDER)
     box2 = slide.shapes.add_textbox(Inches(7.183), Inches(1.85), Inches(5.1), Inches(4.5))
-    tf = box2.text_frame
-    tf.word_wrap = True
-    style_paragraph(tf.paragraphs[0], "Thank you! Questions?", HEADER_FONT, 22, ACCENT_GOLD, bold=True, space_after=16)
+    tf2 = box2.text_frame
+    tf2.word_wrap = True
+    style_paragraph(tf2.paragraphs[0], "Thank you! Questions?", HEADER_FONT, 22, ACCENT_GOLD, bold=True, space_after=12)
+    
+    p = tf2.add_paragraph()
+    style_paragraph(p, "We are ready for your questions, Sir.", BODY_FONT, 14, TEXT_WHITE, italic=True, space_after=14)
 
-    p = tf.add_paragraph()
-    style_paragraph(p, "Presenters Panel:", BODY_FONT, 14, TEXT_WHITE, bold=True, space_after=8)
+    p = tf2.add_paragraph()
+    style_paragraph(p, "Presenters Panel (Group 3):", BODY_FONT, 13, TEXT_WHITE, bold=True, space_after=6)
 
     presenters = [
         "MD Kaif Molla",
         "Arhan Das",
         "Sumit Akhuli",
+        "Shiva Gupta",
         "Sarthak Mishra",
         "Netram Faran",
         "Aditya Prasad"
     ]
     for pres in presenters:
-        p = tf.add_paragraph()
-        style_paragraph(p, "  • " + pres, BODY_FONT, 13, TEXT_GRAY, space_after=4)
+        p = tf2.add_paragraph()
+        style_paragraph(p, "  • " + pres, BODY_FONT, 12, TEXT_GRAY, space_after=3)
 
     # Save presentation
     prs.save("presentation.pptx")
