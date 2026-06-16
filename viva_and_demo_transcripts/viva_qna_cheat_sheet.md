@@ -5,6 +5,11 @@ Use this guide to study the 10 most common questions. The answers are written in
 ---
 
 ### Q1: "Why does the loss stay at exactly 2.3026 when the model fails to learn?"
+* **Which Project**: Project 23 (Batch Normalization Analysis on MNIST)
+* **Which Images to Look At**: 
+  * `extracted_plots/task2_exp2_high_lr.png` (High Learning Rate Test)
+  * `extracted_plots/task2_exp3_poor_init.png` (Suboptimal Initialization Test)
+* **What to Look For**: Look at the **red dashed line** (labeled "No BN"). In both charts, this red line is completely flat at the very top of the Loss Curve (at value `2.3`) and flat at the bottom of the Accuracy Curve (at value `0.11` or `11%`). This is the "flatline" we are talking about.
 * **Easy Explanation**: 
   > "Sir, since the MNIST dataset has 10 different digit classes (0 to 9), a model that is completely failing to learn will just guess randomly. The chance of guessing the right digit is 1 out of 10, which is a probability of 0.1 (or 10%). 
   > 
@@ -13,6 +18,9 @@ Use this guide to study the 10 most common questions. The answers are written in
 ---
 
 ### Q2: "How does Batch Normalization solve the vanishing gradient issue under poor initialization (tiny weights = 0.001)?"
+* **Which Project**: Project 23 (Batch Normalization Analysis on MNIST)
+* **Which Image to Look At**: `extracted_plots/task2_exp3_poor_init.png`
+* **What to Look For**: Look at the contrast between the **red dashed line** (No BN) and the **green line** (With BN). The red line stays flat at `11%` accuracy (failed). The green line starts at `90%` in Epoch 1 and climbs to `97.48%` (succeeded).
 * **Easy Explanation**: 
   > "When weights are initialized to a tiny number like 0.001, the signals get smaller and smaller as they pass through the 6 layers, eventually shrinking to almost zero at the output. Because the output signal is near zero, the gradients also become zero, and the model cannot learn. 
   > 
