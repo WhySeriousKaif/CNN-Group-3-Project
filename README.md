@@ -9,14 +9,15 @@ This repository contains the complete codebase, outputs, and documentation for o
 ```
 CNN-Group-3-Project/
 ├── Project 21 - AI Story Continuation/       # Task 1: LSTM Character Model
-│   ├── data/                                 # Cached Text Corpuses
-│   │   ├── shakespeare.txt                   # William Shakespeare Dramatic Works
-│   │   └── sherlock.txt                      # Arthur Conan Doyle Sherlock Holmes
-│   └── task1_story_continuation.ipynb        # Pre-computed Story Generation Notebook
+│   ├── data/                                 # Cached Text Corpuses (Shakespeare & Sherlock)
+│   ├── plots/                                # Loss curves visualizations
+│   ├── A_G03_Task1.ipynb                     # Main Story Generation Notebook
+│   └── README.md                             # Project 21 Documentation
 │
 ├── Project 23 - Batch Norm vs No Batch Norm/  # Task 2: Deep MLP Stress-Test
 │   ├── data/                                 # MNIST dataset cache
-│   └── task2_batch_norm.ipynb                # Pre-computed Batch Norm comparison Notebook
+│   ├── A_G03_Task2.ipynb                     # Main Batch Norm Comparison Notebook
+│   └── README.md                             # Project 23 Documentation
 │
 ├── viva_and_demo_transcripts/                # Spoken Presentation Scripts
 │   ├── demonstration_script.md               # Script for sharing screen
@@ -45,7 +46,7 @@ To view and run the notebooks interactively:
    /usr/bin/python3 -m notebook
    ```
 2. Open the printed local URL (e.g. `http://localhost:8888`) in your browser.
-3. Open `task1_story_continuation.ipynb` or `task2_batch_norm.ipynb`.
+3. Open `Project 21 - AI Story Continuation/A_G03_Task1.ipynb` or `Project 23 - Batch Norm vs No Batch Norm/A_G03_Task2.ipynb`.
 4. Click **Run All** in the toolbar. All data is cached locally so training runs will complete in under 2 minutes.
 
 ---
